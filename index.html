@@ -135,21 +135,17 @@ a{color:inherit}
 .membro[data-i="3"] video{object-position:30% 50%}
 }
 /* SOM — PAREDE DE TVs */
-.som{padding:7vh 0 0;position:relative}
-.som-head{text-align:center;margin-bottom:28px}
-.tvs{position:relative;width:100%;margin:0 auto}
-.tv{position:absolute;transform-origin:50% 100%;filter:drop-shadow(0 18px 22px #000c)}
-.tv .casing{position:relative;display:block;width:100%;height:auto;z-index:2;pointer-events:none;user-select:none}
-.tv .scr{position:absolute;z-index:1;overflow:hidden;background:#07090a;border-radius:9%/11%}
-.tv .scr canvas,.tv .scr video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.tv .scr img.lg{position:absolute;left:50%;top:50%;max-width:74%;max-height:58%;transform:translate(-50%,-50%);filter:drop-shadow(0 0 6px #fff8) drop-shadow(0 0 14px #ffffff40)}
-.tv .scr img.lg.glitch{filter:drop-shadow(3px 0 #ff0005c0) drop-shadow(-3px 0 #00e1ffc0)}
-.tv .scr video + img.lg{max-width:44%;max-height:30%;top:auto;bottom:6%;transform:translateX(-50%)}
-.tv .scr::after{content:"";position:absolute;inset:0;z-index:3;background:repeating-linear-gradient(0deg,#0007 0 1px,transparent 1px 3px),radial-gradient(110% 100% at 50% 45%,transparent 50%,#000c);pointer-events:none}
-.tv .scr::before{content:"";position:absolute;inset:0;z-index:4;background:radial-gradient(80% 60% at 30% 20%,#ffffff1c,transparent 60%);pointer-events:none}
-.tv .roll{position:absolute;left:0;right:0;height:22%;z-index:3;background:linear-gradient(transparent,#ffffff12,transparent);animation:roll 3.6s linear infinite;pointer-events:none}
-@keyframes roll{from{top:-25%}to{top:110%}}
-.tv .off{position:absolute;inset:0;background:#000;z-index:5}
+.som{position:relative;background:var(--bg)}
+.som-stage{position:relative;width:100%;aspect-ratio:2752/1536;overflow:hidden;background:#050403}
+.som-cam{position:absolute;inset:0;transform-origin:50% 68%;transform:scale(var(--cam,1.3))}
+.som-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.som-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(var(--bg),transparent 14%,transparent 88%,#0d0a08)}
+.som-head{position:absolute;left:0;right:0;top:7%;z-index:3;text-align:center;padding:0 16px;text-shadow:0 4px 30px #000}
+@media (max-width:759px){
+  .som-stage{aspect-ratio:1080/1935}
+  .som-head{top:9%}
+  .som-cam{transform-origin:50% 76%;--cam:1.35}
+}
 .marquee{margin-top:28px;border-block:1px solid #ffffff14;background:#0d0a08;overflow:hidden;white-space:nowrap;padding:18px 0}
 .marquee .track{display:inline-block;font:900 clamp(26px,3.6vw,52px)/1 var(--display);letter-spacing:.08em;text-transform:uppercase;color:#1c1714;-webkit-text-stroke:1px #6b2a17}
 .marquee .track b{color:var(--red);-webkit-text-stroke:0;text-shadow:0 0 18px #ff0005aa;font-weight:900}
@@ -386,12 +382,15 @@ footer .soc a:hover{color:var(--amber)}
 
 <!-- 04 O SOM DA EPIC -->
 <section class="som" id="som">
-  <div class="wrap">
+  <div class="som-stage" id="somStage">
+    <div class="som-cam">
+      <img class="som-bg" id="somPoster" alt="" aria-hidden="true">
+      <video class="som-bg" id="somVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+    </div>
     <div class="som-head">
       <p class="label">O som da EPIC</p>
       <h2 class="h2" style="margin-top:14px">As bandas<br>que a gente toca</h2>
     </div>
-    <div class="tvs" id="tvs"></div>
   </div>
   <div class="marquee" aria-hidden="true"><div class="track" id="mq"></div></div>
 </section>
@@ -571,56 +570,19 @@ fetch('ig.json').then(r=>r.json()).then(list => {
 
 /* ---------- 04 Parede de TVs: TVs de tubo empilhadas ---------- */
 const BANDAS = ['BON JOVI','GUNS N’ ROSES','VAN HALEN','DEF LEPPARD','AEROSMITH','KISS','RUSH','SCORPIONS','WHITESNAKE','QUEEN','OZZY OSBOURNE','FAITH NO MORE','TWISTED SISTER','LENNY KRAVITZ','YES'];
-const LOGOS = ['bonjovi','gnr','vanhalen','defleppard','aerosmith','kiss','rush','scorpions','whitesnake','queen','ozzy','faithnomore','twistedsister','lennykravitz','yes'].map(n=>`media/logos/${n}.png`);
-LOGOS.forEach(src=>{ const i=new Image(); i.src=src; });
-const TVM = [{"src": "media/tvs/tv0.webp", "ar": 1.3808, "screen": {"x": 11.52, "y": 13.53, "w": 61.52, "h": 66.81}}, {"src": "media/tvs/tv1.webp", "ar": 1.2871, "screen": {"x": 8.92, "y": 14.57, "w": 65.18, "h": 66.25}}, {"src": "media/tvs/tv2.webp", "ar": 0.9858, "screen": {"x": 11.62, "y": 10.3, "w": 76.63, "h": 58.17}}, {"src": "media/tvs/tv3.webp", "ar": 1.147, "screen": {"x": 8.98, "y": 28.3, "w": 64.91, "h": 57.69}}, {"src": "media/tvs/tv4.webp", "ar": 1.3784, "screen": {"x": 10.73, "y": 16.36, "w": 63.05, "h": 65.86}}, {"src": "media/tvs/tv5.webp", "ar": 1.0224, "screen": {"x": 10.18, "y": 11.73, "w": 79.51, "h": 61.66}}, {"src": "media/tvs/tv6.webp", "ar": 1.2515, "screen": {"x": 8.87, "y": 14.94, "w": 65.72, "h": 66.42}}, {"src": "media/tvs/tv7.webp", "ar": 1.0544, "screen": {"x": 8.02, "y": 29.61, "w": 65.9, "h": 55.29}}];
-/* x, b (base) e w em % da largura do painel; r = inclinação; k = conteúdo */
-const PILE_D = {h:41, tvs:[
- {m:4,x:0,b:0,w:20,r:-1},{m:2,x:19,b:0,w:17,r:1.5,k:'clip'},{m:0,x:35.5,b:0,w:22,r:0},{m:5,x:56.5,b:0,w:16,r:-2},{m:1,x:71.5,b:0,w:19.5,r:1},{m:3,x:89,b:0,w:11.5,r:-2.5},
- {m:7,x:3,b:14.2,w:13,r:2},{m:6,x:16.5,b:16.6,w:16,r:-1.5},{m:0,x:33,b:15.6,w:15,r:1,k:'clip'},{m:2,x:48.5,b:15.4,w:13,r:-1},{m:4,x:62,b:15.2,w:16,r:2},{m:5,x:78.5,b:15.2,w:14,r:-1.5},
- {m:1,x:9,b:26,w:12,r:-2},{m:3,x:25,b:28.6,w:11,r:1.5,k:'static'},{m:7,x:42,b:27.4,w:12,r:-1},{m:6,x:59,b:26.6,w:13,r:2,k:'clip'},{m:2,x:76,b:28.6,w:11,r:1}]};
-const PILE_M = {h:118, tvs:[
- {m:0,x:0,b:0,w:52,r:-1},{m:2,x:51,b:0,w:47,r:1.5,k:'clip'},
- {m:3,x:3,b:36,w:44,r:1.5},{m:6,x:46,b:46,w:52,r:-1.5},
- {m:5,x:6,b:74,w:40,r:-1,k:'clip'},{m:1,x:49,b:86,w:44,r:2}]};
-const tvBox = document.getElementById('tvs');
-let tvs = [], bi = 0, tvOn = false;
-function noise(c){ const x = c.getContext('2d'); const d = x.createImageData(c.width,c.height); return () => { const a = d.data; for (let p=0;p<a.length;p+=4){ const v = Math.random()*170|0; a[p]=v; a[p+1]=v*.8; a[p+2]=v*.75; a[p+3]=255; } x.putImageData(d,0,0); }; }
-function buildPile(){
-  const pile = innerWidth < 760 ? PILE_M : PILE_D;
-  tvBox.innerHTML = ''; tvBox.style.height = 'auto'; tvBox.style.aspectRatio = `100 / ${pile.h}`;
-  tvs = pile.tvs.map((d,i) => {
-    const M = TVM[d.m], k = d.k || 'logo';
-    const el = document.createElement('div'); el.className = 'tv';
-    Object.assign(el.style,{left:d.x+'%',bottom:(d.b/pile.h*100)+'%',width:d.w+'%',transform:`rotate(${d.r}deg)`,zIndex:Math.round(100-d.b)});
-    const sc = M.screen;
-    el.innerHTML = `<div class="scr" style="left:${sc.x}%;top:${sc.y}%;width:${sc.w}%;height:${sc.h}%"><canvas width="120" height="90"></canvas>${k==='clip'?'<video muted loop playsinline preload="none"></video>':''}<img class="lg" alt=""><div class="roll"></div><div class="off"></div></div><img class="casing" src="${M.src}" alt="">`;
-    tvBox.appendChild(el);
-    const t = {el, kind:k, paint:noise(el.querySelector('canvas'))};
-    if (tvOn) tune(t, true);
-    return t;
-  });
+/* cenário: galpão com as TVs; os logos já estão gravados dentro das telas do vídeo */
+const CENA = {d:{poster:'media/som/cena_d.webp', video:'media/som/som_d.mp4'}, m:{poster:'media/som/cena_m.webp', video:'media/som/som_m.mp4'}};
+const somVideo = document.getElementById('somVideo'), somPoster = document.getElementById('somPoster');
+let somVisivel = false;
+function montaCena(){
+  const cena = innerWidth < 760 ? CENA.m : CENA.d;
+  somPoster.src = cena.poster; somVideo.poster = cena.poster;
+  if (!somVideo.src.endsWith(cena.video)) somVideo.src = cena.video;
 }
-function tune(t, instant){
-  const cv = t.el.querySelector('canvas'), lg = t.el.querySelector('img.lg'), off = t.el.querySelector('.off');
-  if (off) off.remove();
-  if (t.kind === 'static') { cv.style.opacity = 1; lg.removeAttribute('src'); return; }
-  const usados = new Set(tvs.flatMap(o => { const g = o.el.querySelector('img.lg'); return [g?.getAttribute('src'), g?.dataset.next]; }));
-  let i = bi++ % LOGOS.length, tent = 0; while (usados.has(LOGOS[i]) && tent++ < LOGOS.length) i = bi++ % LOGOS.length;
-  lg.dataset.next = LOGOS[i];
-  const show = () => { lg.src = LOGOS[i]; lg.alt = BANDAS[i]; lg.classList.add('glitch'); setTimeout(()=>lg.classList.remove('glitch'), 260); gsap.to(cv,{opacity:t.kind==='clip'?.2:.12,duration:.35}); };
-  if (t.kind === 'clip') { const v = t.el.querySelector('video'); const c = clips[Math.random()*clips.length|0]; if (c && !v.src) { v.src = c.src; v.play().catch(()=>{}); } }
-  if (instant) return show();
-  gsap.set(cv,{opacity:1}); lg.style.opacity = 0;
-  setTimeout(()=>{ lg.style.opacity = 1; show(); }, 220);
-}
-buildPile();
-let lastPile = innerWidth < 760; addEventListener('resize', () => { const m = innerWidth < 760; if (m !== lastPile) { lastPile = m; buildPile(); } });
-function loop(){ if (tvOn) tvs.forEach(t => { if (t.kind !== 'clip' || Math.random() < .4) t.paint(); }); requestAnimationFrame(loop); }
-requestAnimationFrame(loop);
-setInterval(()=>{ if(!tvOn) return; const t = tvs[Math.random()*tvs.length|0]; if (t.kind==='logo') tune(t); }, 1200);
-tvBox.addEventListener('mouseover', e => { const tv = e.target.closest('.tv'); if (tv) gsap.to(tv.querySelector('canvas'),{opacity:0,duration:.2}); });
-tvBox.addEventListener('mouseout', e => { const tv = e.target.closest('.tv'); if (tv) gsap.to(tv.querySelector('canvas'),{opacity:.15,duration:.4}); });
+montaCena();
+let lastCena = innerWidth < 760; addEventListener('resize', () => { const m = innerWidth < 760; if (m !== lastCena) { lastCena = m; montaCena(); } });
+somVideo.addEventListener('canplay', () => { if (somVisivel) somVideo.play().catch(()=>{}); });
+new IntersectionObserver(([e]) => { somVisivel = e.isIntersecting; if (somVisivel) somVideo.play().catch(()=>{}); else somVideo.pause(); }).observe(document.getElementById('somStage'));
 const mq = document.getElementById('mq');
 const unit = BANDAS.map((b,i)=> i%3===0?`<b>${b}</b>`:b).join('<em>✕</em>') + '<em>✕</em>';
 mq.innerHTML = unit + unit + unit;
@@ -690,14 +652,9 @@ membros.forEach((m,i) => {
 });
 tl.to({}, {duration:.3});
 
-/* TVs ligam uma a uma */
-ScrollTrigger.create({trigger:'#som',start:'top 70%',once:true,onEnter:()=>{
-  tvOn = true;
-  tvs.forEach((t,i)=>{ const off = t.el.querySelector('.off'); if (!off) return;
-    gsap.timeline({delay:i*.09}).to(off,{scaleY:.02,duration:.08}).to(off,{scaleX:0,duration:.15,ease:'power2.in',onComplete:()=>tune(t)}); });
-}});
 if (!REDUCED) {
-  gsap.from('.tv',{y:80,opacity:0,stagger:{each:.05,from:'start'},duration:.9,ease:'back.out(1.4)',scrollTrigger:{trigger:'#tvs',start:'top 85%'}});
+  gsap.from('.som-head',{opacity:0,y:50,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'#som',start:'top 75%'}});
+  gsap.fromTo('.som-cam',{'--cam':innerWidth<760?1.5:1.42},{'--cam':innerWidth<760?1.32:1.26,ease:'none',scrollTrigger:{trigger:'#som',start:'top bottom',end:'bottom top',scrub:true,invalidateOnRefresh:true}});
   gsap.fromTo('#mq',{xPercent:0},{xPercent:-33.33,ease:'none',scrollTrigger:{trigger:'.marquee',start:'top bottom',end:'bottom top',scrub:1}});
   gsap.utils.toArray('.aovivo .h2,.insta .h2,.agenda .h2,.contrate .h2').forEach(h => gsap.from(h,{opacity:0,y:60,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:h,start:'top 85%'}}));
   gsap.from('.av',{opacity:0,y:50,scale:.96,stagger:.07,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'.mosaic',start:'top 85%'}});

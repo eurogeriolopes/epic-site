@@ -122,6 +122,7 @@ a{color:inherit}
 .ficha dt{font:600 12px var(--cond);letter-spacing:.3em;text-transform:uppercase;color:var(--amber);margin-bottom:4px}
 .ficha dd{font:400 17px/1.45 var(--body);color:var(--bone)}
 .ficha .row{border-left:2px solid var(--red-deep);padding-left:14px}
+.ficha .autor{display:block;margin-top:4px;font:500 12px var(--cond);letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
 .prov{font:500 11px var(--cond);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:18px}
 .dots{position:absolute;right:clamp(16px,3vw,40px);bottom:40px;display:flex;gap:10px;z-index:5}
 .dots i{width:28px;height:3px;background:#ffffff33}
@@ -336,12 +337,11 @@ footer .soc a:hover{color:var(--amber)}
       <h3 class="nome">Sidão</h3>
       <p class="label papel">Guitarra</p>
       <dl>
-        <div class="row"><dt>Influências</dt><dd>Van Halen, Guns N’ Roses, Scorpions</dd></div>
-        <div class="row"><dt>Frase</dt><dd>“Volume no talo, sempre.”</dd></div>
-        <div class="row"><dt>Música favorita de tocar</dt><dd>Sweet Child O’ Mine</dd></div>
-        <div class="row"><dt>Que música jura que nunca vai tocar?</dt><dd>A gente nunca diz nunca.</dd></div>
+        <div class="row"><dt>Influências</dt><dd>Bon Jovi, Kiss, Europe, Iron Maiden, Helloween, Twisted Sister, Def Leppard</dd></div>
+        <div class="row"><dt>Frase</dt><dd>“Tudo é um passo metafísico na direção da compreensão de um todo no sentido da parte.”</dd></div>
+        <div class="row"><dt>Música favorita de tocar</dt><dd>Let the Good Times Rock</dd></div>
+        <div class="row"><dt>Item obrigatório no camarim</dt><dd>Conforto.</dd></div>
       </dl>
-      <p class="prov">Conteúdo provisório</p>
     </div>
   </article>
 
@@ -368,12 +368,11 @@ footer .soc a:hover{color:var(--amber)}
       <h3 class="nome">Rodrigo</h3>
       <p class="label papel">Bateria</p>
       <dl>
-        <div class="row"><dt>Influências</dt><dd>Def Leppard, Kiss, Van Halen</dd></div>
-        <div class="row"><dt>Frase</dt><dd>“Rock na veia!”</dd></div>
-        <div class="row"><dt>Música favorita de tocar</dt><dd>Pour Some Sugar on Me</dd></div>
-        <div class="row"><dt>Que música jura que nunca vai tocar?</dt><dd>Qualquer uma sem bumbo.</dd></div>
+        <div class="row"><dt>Influências</dt><dd>Dream Theater, Rush, Dr. Sin, Yes, King’s X</dd></div>
+        <div class="row"><dt>Frase</dt><dd>“A mente que se abre a uma nova ideia jamais voltará ao seu tamanho original.” <span class="autor">Oliver Wendell Holmes</span></dd></div>
+        <div class="row"><dt>Música favorita de tocar</dt><dd>Tom Sawyer</dd></div>
+        <div class="row"><dt>Item obrigatório no camarim</dt><dd>Água!!!</dd></div>
       </dl>
-      <p class="prov">Conteúdo provisório</p>
     </div>
   </article>
 
@@ -647,7 +646,7 @@ membros.forEach((m,i) => {
     .from(m.querySelectorAll('.nome span'),{opacity:0,scale:1.8,y:-20,stagger:.03,duration:.2,ease:'power4.in'},at+.25)
     .from(m.querySelector('.papel'),{opacity:0,x:-20*side,duration:.2},at+.45)
     .from(m.querySelectorAll('.row'),{opacity:0,y:24,stagger:.06,duration:.2},at+.5)
-    .from(m.querySelector('.prov'),{opacity:0,duration:.1},at+.75);
+    .from(m.querySelector('.prov') || {},{opacity:0,duration:.1},at+.75);
   if (i<3) tl.to(m.querySelector('.ficha'),{opacity:0,y:-30,duration:.2},at+1.05);
 });
 tl.to({}, {duration:.3});

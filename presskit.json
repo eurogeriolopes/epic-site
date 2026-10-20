@@ -1,0 +1,75 @@
+{
+ "logos": [
+  {
+   "nome": "Logo Vermelho",
+   "desc": "Versão principal. Para fundos escuros e coloridos.",
+   "fundo": "dark",
+   "preview": "media/presskit/EPIC_logo_vermelho.png",
+   "png": "media/presskit/EPIC_logo_vermelho.png",
+   "w": 2659,
+   "h": 635,
+   "png_mb": 0.04,
+   "svg": "media/presskit/EPIC_logo_vermelho.svg"
+  },
+  {
+   "nome": "Logo Branco",
+   "desc": "Para fundos escuros, fotos e cores fortes.",
+   "fundo": "steel",
+   "preview": "media/presskit/EPIC_logo_branco.png",
+   "png": "media/presskit/EPIC_logo_branco.png",
+   "w": 2659,
+   "h": 635,
+   "png_mb": 0.03,
+   "svg": "media/presskit/EPIC_logo_branco.svg"
+  },
+  {
+   "nome": "Logo Preto",
+   "desc": "Para fundos claros e impressão em uma cor.",
+   "fundo": "light",
+   "preview": "media/presskit/EPIC_logo_preto.png",
+   "png": "media/presskit/EPIC_logo_preto.png",
+   "w": 2659,
+   "h": 635,
+   "png_mb": 0.03,
+   "svg": "media/presskit/EPIC_logo_preto.svg"
+  },
+  {
+   "nome": "Logo placa 3D",
+   "desc": "Versão com a placa enferrujada da arte principal, para destaque em cartazes.",
+   "fundo": "dark",
+   "preview": "media/presskit/thumb_logo_placa3d.webp",
+   "png": "media/presskit/EPIC_logo_placa3d.png",
+   "w": 2541,
+   "h": 681,
+   "png_mb": 2.86
+  }
+ ],
+ "fotos": [
+  {
+   "nome": "Foto da banda — horizontal",
+   "desc": "Os quatro integrantes sob a placa EPIC, no galpão industrial. Ideal para banners, capas e cartazes na horizontal.",
+   "proporcao": "16:9",
+   "arquivo": "media/presskit/EPIC_foto_banda_16x9.jpg",
+   "thumb": "media/presskit/thumb_foto_16x9.webp",
+   "w": 5504,
+   "h": 3072,
+   "mb": 3.8,
+   "alt": "A banda EPIC em pé sob a placa EPIC num galpão industrial, formato horizontal"
+  },
+  {
+   "nome": "Foto da banda — vertical",
+   "desc": "A mesma cena em formato vertical. Ideal para stories, reels, flyers e cartazes em pé.",
+   "proporcao": "9:16",
+   "arquivo": "media/presskit/EPIC_foto_banda_9x16.jpg",
+   "thumb": "media/presskit/thumb_foto_9x16.webp",
+   "w": 3040,
+   "h": 5376,
+   "mb": 6.4,
+   "alt": "A banda EPIC em pé sob a placa EPIC, formato vertical"
+  }
+ ],
+ "zip": {
+  "arquivo": "media/presskit/EPIC_press_kit.zip",
+  "mb": 13.1
+ }
+}

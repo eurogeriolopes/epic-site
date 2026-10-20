@@ -66,10 +66,21 @@
    "h": 5376,
    "mb": 6.4,
    "alt": "A banda EPIC em pé sob a placa EPIC, formato vertical"
+  },
+  {
+   "nome": "Retrato da banda — 2026",
+   "desc": "Retrato em preto e branco dos quatro integrantes. Ideal para materiais de imprensa, cartazes e posts.",
+   "proporcao": "4:5",
+   "arquivo": "media/presskit/EPIC_foto_retrato_2026_4x5.jpg",
+   "thumb": "media/presskit/thumb_foto_retrato_2026.webp",
+   "w": 3712,
+   "h": 4608,
+   "mb": 9.8,
+   "alt": "Retrato em preto e branco dos quatro integrantes da EPIC"
   }
  ],
  "zip": {
   "arquivo": "media/presskit/EPIC_press_kit.zip",
-  "mb": 13.1
+  "mb": 22.9
  }
 }

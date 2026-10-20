@@ -64,8 +64,19 @@
    "thumb": "media/presskit/thumb_foto_9x16.webp",
    "w": 3040,
    "h": 5376,
-   "mb": 6.4,
+   "mb": 4.8,
    "alt": "A banda EPIC em pé sob a placa EPIC, formato vertical"
+  },
+  {
+   "nome": "Foto da banda — vertical, sem logo",
+   "desc": "A mesma foto vertical, sem a placa EPIC. Espaço livre no alto para você aplicar o seu título, data e o logo da EPIC.",
+   "proporcao": "9:16",
+   "arquivo": "media/presskit/EPIC_foto_banda_9x16_sem_logo.jpg",
+   "thumb": "media/presskit/thumb_foto_9x16_sem_logo.webp",
+   "w": 3040,
+   "h": 5376,
+   "mb": 4.3,
+   "alt": "Os quatro integrantes da EPIC em pé num galpão industrial, formato vertical, sem logo"
   },
   {
    "nome": "Retrato da banda — 2026",
@@ -81,6 +92,6 @@
  ],
  "zip": {
   "arquivo": "media/presskit/EPIC_press_kit.zip",
-  "mb": 22.9
+  "mb": 25.6
  }
 }

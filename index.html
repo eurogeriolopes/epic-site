@@ -385,7 +385,7 @@ footer .soc a:hover{color:var(--amber)}
   <div class="som-stage" id="somStage">
     <div class="som-cam">
       <img class="som-bg" id="somPoster" alt="" aria-hidden="true">
-      <video class="som-bg" id="somVideo" muted loop playsinline preload="none" aria-hidden="true"></video>
+      <video class="som-bg" id="somVideo" muted loop playsinline preload="metadata" aria-hidden="true"></video>
     </div>
     <div class="som-head">
       <p class="label">O som da EPIC</p>
@@ -582,6 +582,7 @@ function montaCena(){
 montaCena();
 let lastCena = innerWidth < 760; addEventListener('resize', () => { const m = innerWidth < 760; if (m !== lastCena) { lastCena = m; montaCena(); } });
 somVideo.addEventListener('canplay', () => { if (somVisivel) somVideo.play().catch(()=>{}); });
+['touchend','pointerdown','keydown'].forEach(ev => addEventListener(ev, () => { if (somVisivel && somVideo.paused) somVideo.play().catch(()=>{}); }, {passive:true}));  /* celular que bloqueia o autoplay: toca no primeiro toque */
 new IntersectionObserver(([e]) => { somVisivel = e.isIntersecting; if (somVisivel) somVideo.play().catch(()=>{}); else somVideo.pause(); }).observe(document.getElementById('somStage'));
 const mq = document.getElementById('mq');
 const unit = BANDAS.map((b,i)=> i%3===0?`<b>${b}</b>`:b).join('<em>✕</em>') + '<em>✕</em>';
